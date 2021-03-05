@@ -13,19 +13,20 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/synicalsyntax/discord.js-heroku.git"
+      "url": "git+https://github.com/HenryHidalgo87/muebleria-santibot/index.js-heroku.git"
+
     },
     "keywords": [
       "heroku",
-      "discord.js"
+      "muebleria-santibot"
     ],
     "author": "henryhidalgo87",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/synicalsyntax/discord.js-heroku/issues"
+      "url": "https://github.com/HenryHidalgo87/muebleria-santibot/issues"
     },
-    "homepage": "https://github.com/synicalsyntax/discord.js-heroku#readme",
+    "homepage": "https://github.com/HenryHidalgo87/muebleria-santibot-heroku#readme",
     "dependencies": {
-      "discord.js": "^11.3.0"
+      "muebleria-santibot": "^11.3.0"
     }
   }
