@@ -1,5 +1,5 @@
 {
-    "name": "mybot-heroku",
+    "name": "muebleriasantibot-heroku",
     "version": "1.0.0",
     "description": "An in-depth guide on deploying your Discord.js bot on Heroku",
     "main": "index.js",
@@ -19,7 +19,7 @@
       "heroku",
       "discord.js"
     ],
-    "author": "synicalsyntax",
+    "author": "henryhidalgo87",
     "license": "MIT",
     "bugs": {
       "url": "https://github.com/synicalsyntax/discord.js-heroku/issues"
