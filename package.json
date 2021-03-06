@@ -28,5 +28,6 @@
     "homepage": "https://github.com/HenryHidalgo87/muebleria-santibot-heroku#readme",
     "dependencies": {
       "muebleria-santibot": "^11.3.0"
+      "node-telegram-bot-api": "^0.30.0"
     }
   }
