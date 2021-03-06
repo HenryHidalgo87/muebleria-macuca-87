@@ -13,7 +13,7 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/HenryHidalgo87/muebleria-santibot/index.js-heroku.git"
+      "url": "https://github.com/HenryHidalgo87/muebleria-santibot.git"
 
     },
     "keywords": [
@@ -29,7 +29,7 @@
     "bugs": {
       "url": "https://github.com/HenryHidalgo87/muebleria-santibot/issues"
     },
-    "homepage": "https://github.com/HenryHidalgo87/muebleria-santibot-heroku#readme",
+    "homepage": "https://github.com/HenryHidalgo87/muebleria-santibot",
     "dependencies": {
       "muebleria-santibot": "^11.3.0"
       "node-telegram-bot-api": "^0.30.0"
