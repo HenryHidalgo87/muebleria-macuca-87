@@ -1,7 +1,7 @@
 {
-    "name": "mybot-heroku",
+    "name": "muebleriasantibot-heroku",
     "version": "1.0.0",
-    "description": "An in-depth guide on deploying your Discord.js bot on Heroku",
+    "description": "An in-depth guide on deploying your muebleria-santibot bot on Heroku",
     "main": "index.js",
     "engines": {
       "node": "8.x",
@@ -13,19 +13,19 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/synicalsyntax/discord.js-heroku.git"
+      "url": "git+https://github.com/HenryHidalgo87/muebleria-santibot-heroku.git"
     },
     "keywords": [
       "heroku",
-      "discord.js"
+      "muebleria-santibot"
     ],
-    "author": "synicalsyntax",
+    "author": "henryhidalgo87",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/synicalsyntax/discord.js-heroku/issues"
+      "url": "https://github.com/HenryHidalgo87/muebleria-santibot-heroku/issues"
     },
-    "homepage": "https://github.com/synicalsyntax/discord.js-heroku#readme",
+    "homepage": "https://github.com/HenryHidalgo87/muebleria-santibot-heroku#readme",
     "dependencies": {
-      "discord.js": "^11.3.0"
+      "muebleria-santibot": "^11.3.0"
     }
   }

@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require('muebleria-santibot');
 const client = new Discord.Client();
 
 client.on('ready', () => {
@@ -7,7 +7,7 @@ client.on('ready', () => {
 });
 
 
-let prefix = process.env.PREFIX;
+let prefix = process.env.FOO;
 
 client.on('message', message => {
     if (!message.content.startsWith(prefix) || !message.guild) return;
