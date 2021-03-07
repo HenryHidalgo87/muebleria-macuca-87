@@ -13,18 +13,22 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/HenryHidalgo87/muebleria-santibot-heroku.git"
+      "url": "git+https://github.com/HenryHidalgo87/muebleria-santibot.git"
     },
     "keywords": [
       "heroku",
-      "muebleria-santibot"
+      "muebleria-santibot",
+      "telegram",
+      "telegram bot",
+      "telegram bot api",
+      "bot"
     ],
     "author": "henryhidalgo87",
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/HenryHidalgo87/muebleria-santibot-heroku/issues"
+      "url": "https://github.com/HenryHidalgo87/muebleria-santibot/issues"
     },
-    "homepage": "https://github.com/HenryHidalgo87/muebleria-santibot-heroku#readme",
+    "homepage": "https://github.com/HenryHidalgo87/muebleria-santibot#readme",
     "dependencies": {
       "muebleria-santibot": "^11.3.0"
     }
