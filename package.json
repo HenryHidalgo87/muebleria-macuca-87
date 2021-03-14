@@ -1,7 +1,7 @@
 {
-    "name": "muebleriasantibot-heroku",
+    "name": "muebleriasantibot",
     "version": "1.0.0",
-    "description": "An in-depth guide on deploying your muebleria-santibot bot on Heroku",
+    "description": "muebleria-santibot bot on Heroku",
     "main": "index.js",
     "engines": {
       "node": "8.x",

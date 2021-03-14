@@ -1,5 +1,5 @@
-const Discord = require('muebleria-santibot');
-const client = new Discord.Client();
+const TelegramBot = require('python-telegram-bot-api');
+const token = '1630057239:AAEZpaEWBKkyVOwQRf9pwHwZBmJmFIJ-VLI';
 
 client.on('ready', () => {
     client.user.setActivity('bot en heroku', {type: 'WATCHING'});
