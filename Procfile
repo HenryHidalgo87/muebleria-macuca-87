@@ -1,1 +1,1 @@
-worker: npm start
+bot: python3 botsanti.py
