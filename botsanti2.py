@@ -62,7 +62,7 @@ def end(update: Updater, _: CallbackContext) -> None:
 
 def main() -> None:
     # Create the Updater and pass it your bot's token.
-    updater = Updater("1630057239:AAGno5APPSjhkE8_S4AV56EpUAH51CTCQVY")
+    updater = Updater("")
     dispatcher = updater.dispatcher
 
     conv_handler = ConversationHandler(

@@ -296,7 +296,7 @@ def muebleria_menu_message() -> None:
 
 
 if __name__ == "__main__":
-    updater = Updater(token='1630057239:AAGno5APPSjhkE8_S4AV56EpUAH51CTCQVY', use_context=True)
+    updater = Updater(token='', use_context=True)
 
     dp = updater.dispatcher
 

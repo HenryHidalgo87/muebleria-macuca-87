@@ -9,7 +9,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                      level=logging.INFO)
 
 logger = logging.getLogger(__name__)
-updater = Updater(token="1630057239:AAEZpaEWBKkyVOwQRf9pwHwZBmJmFIJ-VLI", use_context=True)
+updater = Updater(token="", use_context=True)
 dispatcher = updater.dispatcher
 
 reply_keyboard = [

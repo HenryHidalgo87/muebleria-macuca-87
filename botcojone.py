@@ -76,7 +76,7 @@ def second_menu_message():
   return 'Choose the submenu in second menu:'
 
 ############################# Handlers #########################################
-updater = Updater('1630057239:AAGno5APPSjhkE8_S4AV56EpUAH51CTCQVY')
+updater = Updater('')
 
 updater.dispatcher.add_handler(CommandHandler('start', start))
 updater.dispatcher.add_handler(CallbackQueryHandler(main_menu, pattern='main'))

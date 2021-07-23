@@ -205,3 +205,10 @@ jspm_packages
 
 # Heroku Env
 .env
+
+botones.py
+prueba.py
+prueba2.py
+pathon telegram bot-1.py
+update.callback_query.message.edit_reply.py
+yes.py
