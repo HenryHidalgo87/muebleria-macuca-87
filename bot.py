@@ -1,0 +1,352 @@
+#!/usr/bin/env python
+# pylint: disable=C0116,W0613
+# This program is dedicated to the public domain under the CC0 license.
+
+import logging
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ChatAction, ParseMode
+from telegram.ext import (
+    Updater,
+    CommandHandler,
+    CallbackQueryHandler,
+    ConversationHandler,
+    CallbackContext,
+)
+
+# Enable logging
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
+)
+
+logger = logging.getLogger(__name__)
+
+# Stages
+FIRST, SECOND = range(2)
+# Callback data
+MUEB, CARP, THREE, FOUR, CMG, SJ2, SM3, MCUD, PC, PR, BOTLL,BAN, BANQ, BARR, BJM, CAM, CLT, CUN, REP, MES, SILL, JCOM, BALANC, SILLP = range(24)
+
+
+def start(update: Update, context: CallbackContext) -> int:
+    """Send message on `/start`."""
+    # Get user that sent /start and log his name
+    user = update.message.from_user
+    logger.info("User %s started the conversation.", user.first_name)
+    # Build InlineKeyboard where each button has a displayed text
+    # and a string as callback_data
+    # The keyboard is a list of button rows, where each row is in turn
+    # a list (hence `[[...]]`).
+    keyboard = [
+        [
+            InlineKeyboardButton("Muebles", callback_data=str(MUEB)),
+            InlineKeyboardButton("Carpinteria", callback_data=str(CARP)),
+        ]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    # Send message with text and appended InlineKeyboard
+    update.message.reply_text("Bienvenidos a Art Macuca 87", reply_markup=reply_markup)
+    # Tell ConversationHandler that we're in state `FIRST` now
+    return FIRST
+
+
+def start_over(update: Update, context: CallbackContext) -> int:
+    """Prompt same text & keyboard as `start` does but not as new message"""
+    # Get CallbackQuery from Update
+    query = update.callback_query
+    # CallbackQueries need to be answered, even if no notification to the user is needed
+    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Muebles", callback_data=str(MUEB)),
+            InlineKeyboardButton("Carpinteria", callback_data=str(CARP)),
+        ]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    # Instead of sending a new message, edit the message that
+    # originated the CallbackQuery. This gives the feeling of an
+    # interactive menu.
+    query.edit_message_text(text="Bienvenidos a Art Macuca 87", reply_markup=reply_markup)
+    return FIRST
+
+
+def mueb(update: Update, context: CallbackContext) -> int:
+    """Show new choice of buttons"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+            [InlineKeyboardButton("Modelo Camagueyano", callback_data=str(CMG)),
+            InlineKeyboardButton("Modelo S.J 2Plazas", callback_data=str(SJ2))],
+            [InlineKeyboardButton("Modelo Semi Comico 3Plazas", callback_data=str(SM3)),
+            InlineKeyboardButton("Modelo Cuadrados", callback_data=str(MCUD))],
+            [InlineKeyboardButton("Modelo Puff Cuadraros", callback_data=str(PC)),
+            InlineKeyboardButton("Modelo Puff Redondos", callback_data=str(PR))],
+            [InlineKeyboardButton("Salir", callback_data=str(THREE))],
+        
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(
+        text="En hora buena, ahora escoja el modelo", reply_markup=reply_markup
+    )
+    return FIRST
+
+
+def carp(update: Update, context: CallbackContext) -> int:
+    """Show new choice of buttons"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [InlineKeyboardButton("Botelleros", callback_data=str(BOTLL)),
+        InlineKeyboardButton("Bancos", callback_data=str(BAN))],
+        [InlineKeyboardButton("Banquetas", callback_data=str(BANQ)),
+        InlineKeyboardButton("Barras", callback_data=str(BARR))],
+        [InlineKeyboardButton("Bajos de Mesetas", callback_data=str(BJM)),
+        InlineKeyboardButton("Camas", callback_data=str(CAM))],
+        [InlineKeyboardButton("Closet", callback_data=str(CLT)),
+        InlineKeyboardButton("Cunas", callback_data=str(CUN))],
+        [InlineKeyboardButton("Repisas", callback_data=str(REP)),
+        InlineKeyboardButton("Mesas", callback_data=str(MES))],
+        [InlineKeyboardButton("Sillas", callback_data=str(SILL)),
+        InlineKeyboardButton("Juegos de comedor", callback_data=str(JCOM))],
+        [InlineKeyboardButton("Sillones", callback_data=str(BALANC)),
+        InlineKeyboardButton("Sillas  de Playa", callback_data=str(SILLP))],
+        [InlineKeyboardButton("Salir", callback_data=str(THREE))],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(
+        text="En hora buena, que desea encargar", reply_markup=reply_markup
+    )
+    return FIRST
+
+
+def three(update: Update, context: CallbackContext) -> int:
+    """Show new choice of buttons"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("Menu Principal", callback_data=str(MUEB)),
+            InlineKeyboardButton("Salir del Bot", callback_data=str(CARP)),
+        ]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(
+        text="Que le gustaria?", reply_markup=reply_markup
+    )
+    # Transfer to conversation state `SECOND`
+    return SECOND
+
+
+def four(update: Update, context: CallbackContext) -> int:
+    """Show new choice of buttons"""
+    query = update.callback_query
+    query.answer()
+    keyboard = [
+        [
+            InlineKeyboardButton("2", callback_data=str(CARP)),
+            InlineKeyboardButton("3", callback_data=str(THREE)),
+        ]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    query.edit_message_text(
+        text="Fourth CallbackQueryHandler, Choose a route", reply_markup=reply_markup
+    )
+    return FIRST
+
+
+def cmg(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(MUEB)),
+        ]
+    ]
+
+    chat_id=update.effective_chat.id
+
+    context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+
+    query.bot.send_media_group(chat_id = chat_id , media=open['multimedia/But-SJ-Damasco-Gris.jpg', 'multimedia/Sofa-SC-3P-Pana-Carmelita.jpg']),
+                            #reply_markup = InlineKeyboardMarkup(main_menu)),
+
+    return FIRST
+
+def sj2(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton(text='⬅️ Regresar', callback_data=str(THREE)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+
+    context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+   
+
+    query.bot.send_photo(chat_id = chat_id , photo=open('multimedia/But-SJ-Damasco-Gris.jpg', 'rb'),
+                             caption="Modelo: SJ\n\n"
+                                     "Numero de Plazas: Cuatro (1 Sofa de 2 Plazas y 2 Butacas)\n\n"
+                                     "Material de Tapiceria: Damasco-Pana-Vinil\n\n"
+                                     "Nota: Modelo adaptado para salas pequenas",
+                             reply_markup = InlineKeyboardMarkup(main_menu)),
+    
+    return FIRST
+
+
+
+def sm3(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton(text='⬅️ Regresar', callback_data='THREE'),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+
+    context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+   
+
+    query.bot.send_photo(chat_id = chat_id , photo=open('multimedia/Sofa-SC-3P-Pana-Carmelita.jpg', 'rb'),
+                             caption="Modelo: Semi-Comico\n\n"
+                                     "Numero de Plazas: Cinco (1 Sofa de 3 Plazas y 2 Butacas)\n\n"
+                                     "Material de Tapiceria: Damasco-Pana-Vinil",
+                             reply_markup = InlineKeyboardMarkup(main_menu)),
+    return FIRST
+
+def mcud(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton(text='⬅️ Regresar', callback_data='THREE'),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+
+    context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+   
+
+    query.bot.send_photo(chat_id = chat_id , photo=open('multimedia/Sofa-Cuadrado-5P-1mesaE.jpg', 'rb'),
+                             caption="Modelo: Cuadrados\n\n"
+                                     "Numero de Plazas: Depende de Usted Cuantas Necesitas\n\n"
+                                     "Nota: La Mesa de Esquina no cuenta como plaza\n\n"
+                                     "Material de Tapiceria: Damasco-Pana-Vinil",
+                             reply_markup = InlineKeyboardMarkup(main_menu)),
+    return FIRST
+
+def pc(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton(text='⬅️ Regresar', callback_data='THREE'),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+
+    context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+   
+
+    query.bot.send_photo(chat_id = chat_id , photo=open('multimedia/Puff Cuadrado Pana-Rojo.jpg', 'rb'),
+                             caption="Modelo: Puff Cuadrado\n\n"
+                                     "Dimensiones: Ancho-40cm Altura-40cm\n\n"
+                                     "Material de Tapiceria: Damasco-Pana-Vinil",
+                             reply_markup = InlineKeyboardMarkup(main_menu)),
+
+    return FIRST
+
+def pr(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton(text='⬅️ Regresar', callback_data='THREE'),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+
+    context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=ChatAction.UPLOAD_PHOTO)
+   
+
+    query.bot.send_photo(chat_id = chat_id , photo=open('multimedia/Puff Redondo.jpg', 'rb'),
+                             caption="Modelo: Puff Redondo\n\n"
+                                     "Dimensiones: Ancho-40cm Altura-40cm\n\n"
+                                     "Material de Tapiceria: Damasco-Pana-Vinil",
+                             reply_markup = InlineKeyboardMarkup(main_menu)),
+    return FIRST
+
+
+def end(update: Update, context: CallbackContext) -> int:
+    """Returns `ConversationHandler.END`, which tells the
+    ConversationHandler that the conversation is over.
+    """
+    query = update.callback_query
+    query.answer()
+    query.edit_message_text(text="Hasta la proxima vez!")
+    return ConversationHandler.END
+
+
+def main() -> None:
+    """Run the bot."""
+    # Create the Updater and pass it your bot's token.
+    updater = Updater("1630057239:AAGno5APPSjhkE8_S4AV56EpUAH51CTCQVY")
+
+    # Get the dispatcher to register handlers
+    dispatcher = updater.dispatcher
+
+    # Setup conversation handler with the states FIRST and SECOND
+    # Use the pattern parameter to pass CallbackQueries with specific
+    # data pattern to the corresponding handlers.
+    # ^ means "start of line/string"
+    # $ means "end of line/string"
+    # So ^ABC$ will only allow 'ABC'
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler('start', start)],
+        states={
+            FIRST: [
+                CallbackQueryHandler(mueb, pattern='^' + str(MUEB) + '$'),
+                CallbackQueryHandler(carp, pattern='^' + str(CARP) + '$'),
+                CallbackQueryHandler(three, pattern='^' + str(THREE) + '$'),
+                CallbackQueryHandler(four, pattern='^' + str(FOUR) + '$'),
+                CallbackQueryHandler(cmg, pattern='^' + str(CMG) + '$'),
+                CallbackQueryHandler(sj2, pattern='^' + str(SJ2) + '$'),
+                CallbackQueryHandler(sm3, pattern='^' + str(SM3) + '$'),
+                CallbackQueryHandler(mcud, pattern='^' + str(MCUD) + '$'),
+                CallbackQueryHandler(pc, pattern='^' + str(PC) + '$'),
+                CallbackQueryHandler(pr, pattern='^' + str(PR) + '$'),
+            ],
+            SECOND: [
+                CallbackQueryHandler(start_over, pattern='^' + str(MUEB) + '$'),
+                CallbackQueryHandler(end, pattern='^' + str(CARP) + '$'),
+            ],
+        },
+        fallbacks=[CommandHandler('start', start)],
+    )
+
+    # Add ConversationHandler to dispatcher that will be used for handling updates
+    dispatcher.add_handler(conv_handler)
+
+    # Start the Bot
+    updater.start_polling()
+
+    # Run the bot until you press Ctrl-C or the process receives SIGINT,
+    # SIGTERM or SIGABRT. This should be used most of the time, since
+    # start_polling() is non-blocking and will stop the bot gracefully.
+    updater.idle()
+
+
+if __name__ == '__main__':
+    main()
