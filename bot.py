@@ -288,7 +288,6 @@ def pr(update: Update, context: CallbackContext) -> int:
                              reply_markup = InlineKeyboardMarkup(main_menu)),
     return FIRST
 
-
 def end(update: Update, context: CallbackContext) -> int:
     """Returns `ConversationHandler.END`, which tells the
     ConversationHandler that the conversation is over.
