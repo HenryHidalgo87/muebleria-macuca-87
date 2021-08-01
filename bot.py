@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# pylint: disable=C0116,W0613
-# This program is dedicated to the public domain under the CC0 license.
-
 import logging
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ChatAction, ParseMode
 from telegram.ext import (
@@ -27,13 +23,10 @@ MUEB, CARP, THREE, FOUR, CMG, SJ2, SM3, MCUD, PC, PR, BOTLL,BAN, BANQ, BARR, BJM
 
 def start(update: Update, context: CallbackContext) -> int:
     """Send message on `/start`."""
-    # Get user that sent /start and log his name
+
     user = update.message.from_user
     logger.info("User %s started the conversation.", user.first_name)
-    # Build InlineKeyboard where each button has a displayed text
-    # and a string as callback_data
-    # The keyboard is a list of button rows, where each row is in turn
-    # a list (hence `[[...]]`).
+   
     keyboard = [
         [
             InlineKeyboardButton("Muebles", callback_data=str(MUEB)),
@@ -41,18 +34,17 @@ def start(update: Update, context: CallbackContext) -> int:
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    # Send message with text and appended InlineKeyboard
+  
     update.message.reply_text("Bienvenidos a Art Macuca 87", reply_markup=reply_markup)
-    # Tell ConversationHandler that we're in state `FIRST` now
+    
     return FIRST
 
 
 def start_over(update: Update, context: CallbackContext) -> int:
     """Prompt same text & keyboard as `start` does but not as new message"""
-    # Get CallbackQuery from Update
+    
     query = update.callback_query
-    # CallbackQueries need to be answered, even if no notification to the user is needed
-    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
+   
     query.answer()
     keyboard = [
         [
@@ -61,9 +53,7 @@ def start_over(update: Update, context: CallbackContext) -> int:
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    # Instead of sending a new message, edit the message that
-    # originated the CallbackQuery. This gives the feeling of an
-    # interactive menu.
+   
     query.edit_message_text(text="Bienvenidos a Art Macuca 87", reply_markup=reply_markup)
     return FIRST
 
@@ -131,7 +121,6 @@ def three(update: Update, context: CallbackContext) -> int:
     query.edit_message_text(
         text="Que le gustaria?", reply_markup=reply_markup
     )
-    # Transfer to conversation state `SECOND`
     return SECOND
 
 
@@ -149,6 +138,7 @@ def four(update: Update, context: CallbackContext) -> int:
     query.edit_message_text(
         text="Fourth CallbackQueryHandler, Choose a route", reply_markup=reply_markup
     )
+    
     return FIRST
 
 
@@ -159,17 +149,14 @@ def cmg(update: Update, context: CallbackContext) -> int:
         [
             InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
             InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
-            InlineKeyboardButton("⬅️ Regresar", callback_data=str(MUEB)),
+            InlineKeyboardButton("Salir", callback_data=str(THREE)),
         ]
-    ]
+]
 
     chat_id=update.effective_chat.id
 
-    context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=ChatAction.UPLOAD_PHOTO)
-
-    query.bot.send_media_group(chat_id = chat_id , media=open['multimedia/But-SJ-Damasco-Gris.jpg', 'multimedia/Sofa-SC-3P-Pana-Carmelita.jpg']),
-                            #reply_markup = InlineKeyboardMarkup(main_menu)),
-
+    context.bot.send_chat_action(chat_id=update.effective_message.chat_id, action=ChatAction.UPLOAD_PHOTO),
+    
     return FIRST
 
 def sj2(update: Update, context: CallbackContext) -> int:
@@ -179,7 +166,7 @@ def sj2(update: Update, context: CallbackContext) -> int:
         [
             InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
             InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
-            InlineKeyboardButton(text='⬅️ Regresar', callback_data=str(THREE)),
+            InlineKeyboardButton("Salir", callback_data=str(THREE)),
         ]
     ]
     chat_id=update.effective_chat.id
@@ -300,18 +287,11 @@ def end(update: Update, context: CallbackContext) -> int:
 
 def main() -> None:
     """Run the bot."""
-    # Create the Updater and pass it your bot's token.
-    updater = Updater("")
+    
+    updater = Updater("1630057239:AAGno5APPSjhkE8_S4AV56EpUAH51CTCQVY")
 
-    # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
 
-    # Setup conversation handler with the states FIRST and SECOND
-    # Use the pattern parameter to pass CallbackQueries with specific
-    # data pattern to the corresponding handlers.
-    # ^ means "start of line/string"
-    # $ means "end of line/string"
-    # So ^ABC$ will only allow 'ABC'
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', start)],
         states={
@@ -335,15 +315,11 @@ def main() -> None:
         fallbacks=[CommandHandler('start', start)],
     )
 
-    # Add ConversationHandler to dispatcher that will be used for handling updates
+
     dispatcher.add_handler(conv_handler)
 
-    # Start the Bot
     updater.start_polling()
 
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
     updater.idle()
 
 
