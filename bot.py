@@ -6,6 +6,7 @@ from telegram.ext import (
     CallbackQueryHandler,
     ConversationHandler,
     CallbackContext,
+    callbackqueryhandler,
 )
 
 # Enable logging
@@ -35,7 +36,7 @@ def start(update: Update, context: CallbackContext) -> int:
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
   
-    update.message.reply_text("Bienvenidos a Art Macuca 87", reply_markup=reply_markup)
+    update.message.reply_text("Bienvenidos a Muebleria Macuca 87", reply_markup=reply_markup)
     
     return FIRST
 
@@ -54,7 +55,7 @@ def start_over(update: Update, context: CallbackContext) -> int:
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
    
-    query.edit_message_text(text="Bienvenidos a Art Macuca 87", reply_markup=reply_markup)
+    query.edit_message_text(text="Bienvenidos a Muebleria Macuca 87", reply_markup=reply_markup)
     return FIRST
 
 
@@ -73,9 +74,8 @@ def mueb(update: Update, context: CallbackContext) -> int:
         
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    query.edit_message_text(
-        text="En hora buena, ahora escoja el modelo", reply_markup=reply_markup
-    )
+   
+    query.message.reply_text(text="En hora buena, ahora escoja uno de estos modelos", reply_markup=reply_markup)
     return FIRST
 
 
@@ -149,7 +149,7 @@ def cmg(update: Update, context: CallbackContext) -> int:
         [
             InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
             InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
-            InlineKeyboardButton("Salir", callback_data=str(THREE)),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(MUEB)),
         ]
 ]
 
@@ -166,7 +166,7 @@ def sj2(update: Update, context: CallbackContext) -> int:
         [
             InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
             InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
-            InlineKeyboardButton("Salir", callback_data=str(THREE)),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(MUEB)),
         ]
     ]
     chat_id=update.effective_chat.id
@@ -192,7 +192,7 @@ def sm3(update: Update, context: CallbackContext) -> int:
         [
             InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
             InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
-            InlineKeyboardButton(text='⬅️ Regresar', callback_data='THREE'),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(MUEB)),
         ]
     ]
     chat_id=update.effective_chat.id
@@ -214,7 +214,7 @@ def mcud(update: Update, context: CallbackContext) -> int:
         [
             InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
             InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
-            InlineKeyboardButton(text='⬅️ Regresar', callback_data='THREE'),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(MUEB)),
         ]
     ]
     chat_id=update.effective_chat.id
@@ -237,7 +237,7 @@ def pc(update: Update, context: CallbackContext) -> int:
         [
             InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
             InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
-            InlineKeyboardButton(text='⬅️ Regresar', callback_data='THREE'),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(MUEB)),
         ]
     ]
     chat_id=update.effective_chat.id
@@ -260,7 +260,7 @@ def pr(update: Update, context: CallbackContext) -> int:
         [
             InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
             InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
-            InlineKeyboardButton(text='⬅️ Regresar', callback_data='THREE'),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(MUEB)),
         ]
     ]
     chat_id=update.effective_chat.id
@@ -273,6 +273,261 @@ def pr(update: Update, context: CallbackContext) -> int:
                                      "Dimensiones: Ancho-40cm Altura-40cm\n\n"
                                      "Material de Tapiceria: Damasco-Pana-Vinil",
                              reply_markup = InlineKeyboardMarkup(main_menu)),
+    return FIRST
+
+def botll(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def ban(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def banq(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def barr(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def bjm(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def cam(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def botll(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def clt(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def cun(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def rep(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def mes(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def sill(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def jcom(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def balanc(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
+    return FIRST
+
+def sillp(update: Update, context: CallbackContext) -> int:
+    query = update.callback_query
+    query.answer()
+    main_menu = [
+        [
+            InlineKeyboardButton("Telegram Contacto", url="https://t.me/henryhidalgo870"),
+            InlineKeyboardButton("Whatapps Contacto", url="https://wa.me/message/RQQ5OVTZO2ZQG1"),
+            InlineKeyboardButton("⬅️ Regresar", callback_data=str(CARP)),
+        ]
+    ]
+    chat_id=update.effective_chat.id
+    reply_markup = InlineKeyboardMarkup(main_menu)
+   
+    query.message.reply_text(text="En estos momentos solo estamos tomamos pedidos, pongase en contacto con nosotros", reply_markup=reply_markup)
+   
     return FIRST
 
 def end(update: Update, context: CallbackContext) -> int:
@@ -288,7 +543,7 @@ def end(update: Update, context: CallbackContext) -> int:
 def main() -> None:
     """Run the bot."""
     
-    updater = Updater("")
+    updater = Updater("1630057239:AAGno5APPSjhkE8_S4AV56EpUAH51CTCQVY")
 
     dispatcher = updater.dispatcher
 
@@ -306,6 +561,20 @@ def main() -> None:
                 CallbackQueryHandler(mcud, pattern='^' + str(MCUD) + '$'),
                 CallbackQueryHandler(pc, pattern='^' + str(PC) + '$'),
                 CallbackQueryHandler(pr, pattern='^' + str(PR) + '$'),
+                CallbackQueryHandler(botll, pattern='^' + str(BOTLL) + '$'),
+                CallbackQueryHandler(ban, pattern='^' + str(BAN) + '$'),
+                CallbackQueryHandler(banq, pattern='^' + str(BANQ) + '$'),
+                CallbackQueryHandler(barr, pattern='^' + str(BARR) + '$'),
+                CallbackQueryHandler(bjm, pattern='^' + str(BJM) + '$'),
+                CallbackQueryHandler(cam, pattern='^' + str(CAM) + '$'),
+                CallbackQueryHandler(clt, pattern='^' + str(CLT) + '$'),
+                CallbackQueryHandler(cun, pattern='^' + str(CUN) + '$'),
+                CallbackQueryHandler(rep, pattern='^' + str(REP) + '$'),
+                CallbackQueryHandler(mes, pattern='^' + str(MES) + '$'),
+                CallbackQueryHandler(sill, pattern='^' + str(SILL) + '$'),
+                CallbackQueryHandler(jcom, pattern='^' + str(JCOM) + '$'),
+                CallbackQueryHandler(balanc, pattern='^' + str(BALANC) + '$'),
+                CallbackQueryHandler(sillp, pattern='^' + str(SILLP) + '$'),
             ],
             SECOND: [
                 CallbackQueryHandler(start_over, pattern='^' + str(MUEB) + '$'),
