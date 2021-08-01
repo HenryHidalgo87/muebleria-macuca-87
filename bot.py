@@ -1,5 +1,7 @@
+import os
 import logging
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, ChatAction, ParseMode
+import telegram
 from telegram.ext import (
     Updater,
     CommandHandler,
@@ -7,6 +9,7 @@ from telegram.ext import (
     ConversationHandler,
     CallbackContext,
     callbackqueryhandler,
+    updater,
 )
 
 # Enable logging
@@ -543,7 +546,12 @@ def end(update: Update, context: CallbackContext) -> int:
 def main() -> None:
     """Run the bot."""
     
-    updater = Updater("")
+    #updater = Updater("")
+    token = os.environ['TOKEN']
+    
+    bot = telegram.Bot(token=token)
+    
+    updater = Updater(token=token, use_context=True)
 
     dispatcher = updater.dispatcher
 
@@ -594,3 +602,5 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+    
+    
