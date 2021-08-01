@@ -543,7 +543,7 @@ def end(update: Update, context: CallbackContext) -> int:
 def main() -> None:
     """Run the bot."""
     
-    updater = Updater("1630057239:AAGno5APPSjhkE8_S4AV56EpUAH51CTCQVY")
+    updater = Updater("")
 
     dispatcher = updater.dispatcher
 
